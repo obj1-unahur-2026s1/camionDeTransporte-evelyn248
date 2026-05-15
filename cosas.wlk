@@ -1,11 +1,17 @@
+import camion.*
+//cosasTest.wtest.*
 object cosas {
     var cosas = []
 }
 
 object knightRider {
+	
 	method peso() = 500
 	method peligrosidad() = 10
-}
+
+	//method modificarPeligrosidad(nuevaPeligrosidad)== 
+		//self.peligrosidad() = nuevaPeligrosidad
+	}
 
 object bumblebee {
     var estaComoRobot = false
@@ -13,7 +19,7 @@ object bumblebee {
     method peligrosidad() = if (estaComoRobot) 30 else 15	
 	method transformar(unEstado) {
         estaComoRobot = unEstado 
-    }	
+    }	//no es buena practica que el usuario tenga que manualemtne elejir entre true of false
 }
 
 object paqueteDeLadrillos {
@@ -26,7 +32,7 @@ object paqueteDeLadrillos {
 }
 
 object arenaAGranel {
-	var property peso = 0
+	var peso = 0
 
     method peso() {return peso}
     method agregarPeso(cantidad) { peso += cantidad }

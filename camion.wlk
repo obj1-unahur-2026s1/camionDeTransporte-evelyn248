@@ -1,7 +1,11 @@
+import cosas.*
+
 object camion {
-    var cosas = []
+    //vaciar despues
+    var cosas = [knightRider, bumblebee, paqueteDeLadrillos, arenaAGranel, bateriaAntiaerea, contenedorPortuario, residuosRadioactivos]
     var tara = 1000
 
+//cargar y descargar cosas de a 1
     method cargar(unaCosa) {
       cosas.add(unaCosa)
     }
@@ -10,10 +14,20 @@ object camion {
       cosas.remove(unaCosa)
     }
 
+//se necesita saber si todas las COSAS son numero pares
     method pesoTotal() = tara + 
         cosas.sum(
-            { c => c.peso() }
+            { c => c.peso() } 
         )
+
+    method pesoEsPar() = cosas.all(
+        {c => c.peso()}
+        ).even()
+
+    /*
+    sum({x=>x.length()})
+    */
+    
 
     method excedidoDePeso() = self.pesoTotal() > 3000
 
@@ -21,21 +35,25 @@ object camion {
         cosas.all({ c => c.peso().even() })      
     }
 
+    //devuelve un booleano. cualquier objeto que cumpla la condicion
     method hayAlgoQuePesa(unValor) = 
         cosas.any(
             { c => c.peso() == unValor }
         )
     
-    method cosasQueSuperanPeligrosidad(nivel) = 
-        cosas.filter(
-            { c => c.peligrosidad() > nivel }
+    //obtener la primer cosa cargada tenga determinada peligrosidad
+    method primerCosaConPeligrosidad(nivelPeligrosidad) =
+        cosas.find(
+            {c => c.peligrosidad()== nivelPeligrosidad}
         )
     
-    //Obtener todas las cosas que superan un determinado nivel de peligrosidad.
 
-    method cosasQueSuperanPeligrosidadDe(unaCosa) = 
-        self.cosasQueSuperanPeligrosidad(unaCosa.peligrosidad()) //coregir
+    //lista de cosas que superan un nivel de peligrosidad
+    
+    method cosasQueSuperanPeligrosidad(nivelPeligrosidad) = 
+        cosas.filter(
+            { c => c.peligrosidad() > nivelPeligrosidad }
+        )
 }
-
 
 
